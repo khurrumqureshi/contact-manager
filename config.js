@@ -1,3 +1,9 @@
+module.exports.main = {
+    port: process.env.PORT || 3000,
+    debug: true,
+    version: "0.1"
+};
+
 module.exports.twitterApp = {
     consumerKey:"A3LA67bf7HlJDRNuUuLRA",
     consumerSecret:"feclKCiSz3L5gehv5WuatdKQytkLwUtS4WPMhkFZ2I",
