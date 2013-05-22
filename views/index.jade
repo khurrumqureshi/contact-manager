@@ -1,0 +1,121 @@
+extends layout
+
+block body
+  form#profile.form-horizontal(name='profile', action='/save',method='post')
+    fieldset
+      h2 Contact Info
+        .control-group
+          label.control-label First Name
+          .controls
+            input#firstName.input-xlarge(name='firstName', type='text', placeholder='first name')
+        .control-group
+          label.control-label Last Name
+          .controls
+            input#lastName.input-xlarge(name='lastName', type='text', placeholder='last name')
+        .control-group
+          label.control-label Company
+          .controls
+            input#company.input-xlarge(name='company', type='text', placeholder='company')
+        .control-group
+          label.control-label Designation
+          .controls
+            input#designation.input-xlarge(name='designation', type='text', placeholder='designation')
+        .control-group
+          label.control-label Address Line 1
+          .controls
+            input#address-line1.input-xlarge(name='address-line1', type='text', placeholder='address line 1')
+        //
+           address-line2 input
+        .control-group
+          label.control-label Address Line 2
+          .controls
+            input#address-line2.input-xlarge(name='address-line2', type='text', placeholder='address line 2')
+        //
+           city input
+        .control-group
+          label.control-label City / Town
+          .controls
+            input#city.input-xlarge(name='city', type='text', placeholder='city')
+        //
+           region input
+        .control-group
+          label.control-label State / Province / Region
+          .controls
+            input#region.input-xlarge(name='region', type='text', placeholder='state / province / region')
+        //
+           postal-code input
+        .control-group
+          label.control-label Zip / Postal Code
+          .controls
+            input#postal-code.input-xlarge(name='postal-code', type='text', placeholder='zip or postal code')
+        .control-group
+          label.control-label Country
+          .controls
+            input#country.input-xlarge(name='country', type='text', placeholder='country')
+        .control-group
+          label.control-label Landline
+          .controls
+            input#phone.input-xlarge(name='phone', type='text', placeholder='landline number')
+        .control-group
+          label.control-label Mobile
+          .controls
+            input#mobile.input-xlarge(name='mobile', type='text', placeholder='mobile')
+        #email-error.alert.alert-error(style='font: 16px bold; text-align:center; display: none;')
+            | Email is mandatory.
+          .control-group
+            label.control-label Email
+            .controls
+              input#email.input-xlarge(name='email', type='text', placeholder='email')
+        #password-error.alert.alert-error(style='font: 16px bold; text-align:center; display: none;')
+            | Password is mandatory.
+          .control-group
+            label.control-label Password
+            .controls
+              input#password.input-xlarge(name='password', type='password', placeholder='password')
+        .controls
+          button.btn.btn-primary(onclick='javascript:validate(event);') Save
+
+    script
+      var userProfile = {};
+      function validate(event) {
+      event.preventDefault();
+      if($("#email").val().trim() == ""){
+              $("div#email-error").show();
+              $("#email").focus();
+              return;
+      }
+      if($("#password").val().trim() == ""){
+       $("div#password-error").show();
+       $("#passowrd").focus();
+       return;
+      }
+      else
+        $("#profile").submit();
+      }
+      $(document).ready(function(){
+      var content = "<li><a href='/register'><i class='icon-user'></i> Register</a></li> \
+                              <li><a href='"+URL+"auth/service/facebook'><i class='icon-user'></i> Register through Facebook</a></li> \
+                              <li><a href='"+URL+"auth/service/linkedin'><i class='icon-user'></i> Register through LinkedIn</a></li>";
+      $('#menu').empty().append(content);
+      userProfile = !{user};
+      if(userProfile.firstName)
+      $("#firstName").val(userProfile.firstName);
+      if(userProfile.lastName)
+      $("#lastName").val(userProfile.lastName);
+      if(userProfile.company)
+      $("#company").val(userProfile.company);
+      if(userProfile.designation)
+      $("#designation").val(userProfile.designation);
+      if(userProfile.city)
+      $("#city").val(userProfile.city);
+      if(userProfile.country)
+      $("#country").val(userProfile.country);
+      if(userProfile.mobile)
+      $("#mobile").val(userProfile.mobile);
+      if(userProfile.email)
+      $("#email").val(userProfile.email);
+      if(userProfile.landLine)
+      $("#phone").val(userProfile.phone);
+      if(userProfile.password)
+      $("#password").val(userProfile.password);
+      })

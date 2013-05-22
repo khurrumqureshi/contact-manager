@@ -1,0 +1,28 @@
+html
+head
+    title Business Card
+    meta(http-equiv='cache-control', content='no-cache', charset='UTF-8')
+    script(src='scripts/external/jquery-latest.min.js')
+    script(src='scripts/external/bootstrap.min.js')
+    script(type='text/javascript', src='scripts/custom/master.js')
+    link(href='styles/external/bootstrap.css', rel='stylesheet', media='screen')
+  body
+  .navbar.navbar-inverse.nav
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='/') Business Card
+          .nav-collapse.collapse
+            ul.nav
+              li.divider-vertical
+            .pull-right
+              ul.nav.pull-right
+                li.dropdown
+                 a.dropdown-toggle(href='#', data-toggle='dropdown')
+                   | Register, New User
+                   b.caret
+                 ul#menu.dropdown-menu
+    block body

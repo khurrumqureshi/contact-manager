@@ -1,0 +1,25 @@
+extends layout
+
+block body
+  form.form-horizontal(action='/login', method='POST')
+    fieldset
+      #legend
+        legend. Login
+          .control-group
+            label.control-label(for='username') Username
+            .controls
+              input#username.input-xlarge(type='text', name='username', placeholder='')
+          .control-group
+            label.control-label(for='password') Password
+            .controls
+              input#password.input-xlarge(type='password', name='password', placeholder='')
+          .control-group
+            .controls
+              button.btn.btn-success Login
+    script
+      $(document).ready(function(){
+         var content = "<li><a href='/register'><i class='icon-user'></i> Register</a></li> \
+                        <li><a href='"+URL+"auth/service/facebook'><i class='icon-user'></i> Register through Facebook</a></li> \
+                        <li><a href='"+URL+"auth/service/linkedin'><i class='icon-user'></i> Register through LinkedIn</a></li>";
+         $('#menu').empty().append(content);
+      })
