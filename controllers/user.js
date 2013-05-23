@@ -39,6 +39,17 @@ module.exports.getQrCode = function(req, res, next){
     })
 }
 
+module.exports.authenticateUser = function(req,res,next){
+    var userName = req.param("username","");
+    var password = req.param("password","");
+    db.users.findOne({email:userName,password:password},function(err,user){
+        if (err || user==null)
+            res.send({"login":false});
+        else
+            res.send({"login":true});
+    })
+}
+
 function insertUser(user,callback){
     user["_id"] = new ObjectID();
     user["profile_url"] = config.url+"profile/"+user._id;
