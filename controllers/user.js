@@ -31,14 +31,6 @@ module.exports.getUser = function(req,res,next){
     })
 }
 
-module.exports.getQrCode = function(req, res, next){
-    db.users.findOne({_id:new ObjectID(req.params.id)},function(err,user){
-        var imageTag = utilFunction.generateQrCode(user.profile_url);
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end("<!DOCTYPE html/><html><head><title>node-qrcode</title></head><body>"+imageTag+"'</body></html>");
-    })
-}
-
 module.exports.authenticateUser = function(req,res,next){
     var userName = req.param("username","");
     var password = req.param("password","");

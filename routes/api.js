@@ -53,7 +53,6 @@ module.exports.route = function(app, passport) {
     });
 
     app.get('/profile/:id',userController.getUser)
-    app.get('/qr-code/:id',userController.getQrCode)
     app.post('/save',userController.saveUser);
     app.post('/authenticate',userController.authenticateUser);
 }
