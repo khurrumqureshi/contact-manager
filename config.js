@@ -31,4 +31,4 @@ module.exports.dbOptions = {
 };
 
 module.exports.connectionString = 'mongodb://admin:admin123@widmore.mongohq.com:10010/Users'
-module.exports.url = "http://localhost:3000/";
+module.exports.url = "http://businesscard-manager.herokuapp.com/";

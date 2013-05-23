@@ -30,11 +30,6 @@ head
                       b.caret
                     ul.dropdown-menu
                       li
-                        a#qr-code(href='/help/support')
-                          i.icon-qrcode
-                          | Generate QR Code
-                      li.divider
-                      li
                         a(href='/logout')
                           i.icon-off
                           | Logout
@@ -111,6 +106,8 @@ head
               input#password.input-xlarge(name='password', type='password', placeholder='password')
         .controls
           button.btn.btn-primary(onclick='javascript:validate(event);') Save
+        #qr-code(style='position:absolute; top:300px; left:700px;')
+          img(src="images/login-facebook.png")
 
     script
       var userProfile = {};
@@ -122,16 +119,15 @@ head
               return;
       }
       if($("#password").val().trim() == ""){
-       $("div#password-error").show();
-       $("#passowrd").focus();
-       return;
+              $("div#password-error").show();
+              $("#password").focus();
+              return;
       }
       else
         $("#profile-data").submit();
       }
       $(document).ready(function(){
       userProfile = !{user};
-      $("#qr-code").attr("href", URL+"qr-code/"+userProfile._id);
 
       if(userProfile.firstName)
       $("#firstName").val(userProfile.firstName);
@@ -153,5 +149,7 @@ head
       $("#phone").val(userProfile.phone);
       if(userProfile.password)
       $("#password").val(userProfile.password);
+      if(userProfile.imageTag)
+      $('div#qr-code').empty().append(userProfile.imageTag);
 
       })

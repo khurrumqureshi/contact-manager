@@ -11,7 +11,8 @@ var express = require('express'),
     LinkedInStrategy = require('passport-linkedin').Strategy,
     LocalStrategy = require('passport-local').Strategy,
     config = require('./config'),
-    db = require('./lib/db-config');
+    db = require('./lib/db-config'),
+    utilFunction = require('./lib/utility_function');
 
 process.on('uncaughtException', function (err) {
     console.log("Node NOT Exiting...");
@@ -36,6 +37,8 @@ db.connectDatabase(function(conn) {
                 db.users.findOne({email:username,password:password},function(err,user){
                     if (err || user==null) { return done(err); }
 
+                    var imageTag = utilFunction.generateQrCode(user.profile_url);
+                    user["imageTag"] = imageTag;
                     return done(null, user);
                 })
             });

@@ -7,6 +7,8 @@ module.exports.saveUser=function(req,res,next){
     db.users.findOne({email:req.body.email},function(err,user){
         if(user==null){
             insertUser(req.body,function(newUser){
+                var imageTag = utilFunction.generateQrCode(newUser.profile_url);
+                newUser["imageTag"] = imageTag;
                 req.session.user = newUser;
                 res.redirect('/profile');
             })
@@ -14,6 +16,8 @@ module.exports.saveUser=function(req,res,next){
         else{
             updateUser(user._id.toString(),req.body,function(newUser){
                 newUser["_id"] = user._id.toString();
+                var imageTag = utilFunction.generateQrCode(user.profile_url);
+                newUser["imageTag"] = imageTag;
                 req.session.user = newUser;
                 res.redirect('/profile');
             })

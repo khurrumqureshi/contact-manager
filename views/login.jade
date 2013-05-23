@@ -1,25 +1,54 @@
 extends layout
 
 block body
-  form.form-horizontal(action='/login', method='POST')
+  form#login.form-horizontal(action='/login', method='POST')
     fieldset
       #legend
         legend. Login
+          #email-error.alert.alert-error(style='font: 16px bold; text-align:center; display: none;')
+              | Email is mandatory.
+            .control-group
+              label.control-label(for='username') Email
+              .controls
+                input#username.input-xlarge(type='text', name='username', placeholder='')
+          #password-error.alert.alert-error(style='font: 16px bold; text-align:center; display: none;')
+              | Password is mandatory.
+            .control-group
+              label.control-label(for='password') Password
+              .controls
+                input#password.input-xlarge(type='password', name='password', placeholder='')
           .control-group
-            label.control-label(for='username') Username
             .controls
-              input#username.input-xlarge(type='text', name='username', placeholder='')
-          .control-group
-            label.control-label(for='password') Password
-            .controls
-              input#password.input-xlarge(type='password', name='password', placeholder='')
-          .control-group
-            .controls
-              button.btn.btn-success Login
+              button.btn.btn-success(onclick='javascript:validate(event);') Login
+          #login-error.alert.alert-error(style='font: 18px bold; text-align:center; display: none;')
+            | Incorrect Username or Password!
+            a.close(data-dismiss='alert', href='#') ×
+
+
     script
+      function validate(event) {
+          event.preventDefault();
+          if($("#username").val().trim() == ""){
+                  $("div#email-error").show();
+                  $("#username").focus();
+                  return;
+          }
+          else
+                  $("div#email-error").hide();
+          if($("#password").val().trim() == ""){
+                  $("div#password-error").show();
+                  $("#password").focus();
+                  return;
+          }
+          else
+            $("#login").submit();
+          }
       $(document).ready(function(){
          var content = "<li><a href='/register'><i class='icon-user'></i> Register</a></li> \
                         <li><a href='"+URL+"auth/service/facebook'><i class='icon-user'></i> Register through Facebook</a></li> \
                         <li><a href='"+URL+"auth/service/linkedin'><i class='icon-user'></i> Register through LinkedIn</a></li>";
          $('#menu').empty().append(content);
+         var loginStatus = #{loginFailure};
+         if(loginStatus)
+         $("div#login-error").show();
       })

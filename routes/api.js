@@ -3,14 +3,16 @@ var userController = require('../controllers/user');
 
 module.exports.route = function(app, passport) {
     app.get('/',function(req, res){
-        res.render('login');
+        res.render('login',{loginFailure:typeof req.session.loginStatus == "undefined" ? false : req.session.loginStatus});
     })
 
     app.post('/login',function(req, res, next) {
         passport.authenticate('local', function(err, user, info) {
             if (err) { return next(err); }
             if (!user) {
+                req.session.loginStatus = true;
                 return res.redirect('/'); }
+            req.session.loginStatus = false;
             req.session.user = user;
             res.redirect('/profile');
 
@@ -27,7 +29,7 @@ module.exports.route = function(app, passport) {
 
     app.get('/logout',function(req, res){
         req.session.user = {};
-        res.render('login');
+        res.redirect('/');
     })
 
     app.get('/auth/service/:service_name',
