@@ -51,13 +51,13 @@ head
         .control-group
           label.control-label Address Line 1
           .controls
-            input#address-line1.input-xlarge(name='address-line1', type='text', placeholder='address line 1')
+            input#addressLine1.input-xlarge(name='addressLine1', type='text', placeholder='address line 1')
         //
            address-line2 input
         .control-group
           label.control-label Address Line 2
           .controls
-            input#address-line2.input-xlarge(name='address-line2', type='text', placeholder='address line 2')
+            input#addressLine2.input-xlarge(name='addressLine2', type='text', placeholder='address line 2')
         //
            city input
         .control-group
@@ -75,7 +75,7 @@ head
         .control-group
           label.control-label Zip / Postal Code
           .controls
-            input#postal-code.input-xlarge(name='postal-code', type='text', placeholder='zip or postal code')
+            input#postalCode.input-xlarge(name='postalCode', type='text', placeholder='zip or postal code')
         .control-group
           label.control-label Country
           .controls
@@ -145,6 +145,14 @@ head
       $("#phone").val(userProfile.phone);
       if(userProfile.password)
       $("#password").val(userProfile.password);
+      if(userProfile.addressLine1)
+      $("#addressLine1").val(userProfile.addressLine1);
+      if(userProfile.addressLine2)
+      $("#addressLine2").val(userProfile.addressLine2);
+      if(userProfile.postalCode)
+      $("#postalCode").val(userProfile.postalCode);
+      if(userProfile.region)
+      $("#region").val(userProfile.region);
       if(userProfile.imageTag){
       var content = "<a href="+userProfile.imageTag+" download='QRCode'><img src="+userProfile.imageTag+" width='180' height='180'/></a><p style='font: 14px normal Helvetica; text-align:center;'>Click on image to download</p>";
       $('div#qr-code').empty().append(content);
