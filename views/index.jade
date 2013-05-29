@@ -3,7 +3,7 @@ extends layout
 block body
   form#profile.form-horizontal(name='profile', action='/save',method='post')
     fieldset
-      h2 Contact Info
+      h2 &nbsp; Contact Info
         .control-group
           label.control-label First Name
           .controls
@@ -74,6 +74,8 @@ block body
               input#password.input-xlarge(name='password', type='password', placeholder='password')
         .controls
           button.btn.btn-primary(onclick='javascript:validate(event);') Save
+        #logo(style='position:absolute; top:450px; left:600px;')
+                    img(src="images/logo.png")
 
     script
       var userProfile = {};

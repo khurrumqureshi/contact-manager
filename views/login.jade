@@ -3,8 +3,8 @@ extends layout
 block body
   form#login.form-horizontal(action='/login', method='POST')
     fieldset
+      h3 &nbsp;&nbsp; Login
       #legend
-        legend. Login
           #email-error.alert.alert-error(style='font: 16px bold; text-align:center; display: none;')
               | Email is mandatory.
             .control-group
@@ -23,6 +23,8 @@ block body
           #login-error.alert.alert-error(style='font: 18px bold; text-align:center; display: none;')
             | Incorrect Username or Password!
             a.close(data-dismiss='alert', href='#') ×
+          #logo(style='position:absolute; top:300px; left:600px;')
+            img(src="images/logo.png")
 
 
     script
@@ -51,4 +53,5 @@ block body
          var loginStatus = #{loginFailure};
          if(loginStatus)
          $("div#login-error").show();
+
       })

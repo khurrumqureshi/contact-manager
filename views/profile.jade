@@ -6,6 +6,7 @@ head
     script(src='scripts/external/bootstrap.min.js')
     script(type='text/javascript', src='scripts/custom/master.js')
     link(href='styles/external/bootstrap.css', rel='stylesheet', media='screen')
+    link(href='styles/internal/style.css', rel='stylesheet', media='screen')
   body
   .navbar.navbar-inverse.nav
       .navbar-inner
@@ -31,7 +32,7 @@ head
                           | Logout
   form#profile-data.form-horizontal(name='profile-data', action='/save',method='post')
     fieldset
-      h2 Contact Info
+      h2 &nbsp; Contact Info
         .control-group
           label.control-label First Name
           .controls
@@ -104,6 +105,8 @@ head
           button.btn.btn-primary(onclick='javascript:validate(event);') Save
         #qr-code(style='position:absolute; top:300px; left:700px;')
           img(src="images/notfound.jpg")
+        #logo(style='position:absolute; top:450px; left:600px;')
+                    img(src="images/logo.png")
 
     script
       var userProfile = {};
