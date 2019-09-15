@@ -26,7 +26,7 @@ module.exports.linkedInApp = {
 module.exports.dbOptions = {
     server:{
         'auto_reconnect': true,
-        'poolSize': 10,
+        'poolSize': 20,
         socketOptions: {keepAlive: 60}
     }
 };
